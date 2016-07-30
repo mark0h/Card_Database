@@ -1,0 +1,14 @@
+$navbar-default-bg: black;
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#nav-logo {
+	text-transform: uppercase;
+	color: #fff;
+	text-weight: bold;
+	float: left;
+	font-size: 1.7em;
+	letter-space: -1px;
+}
