@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
   
 
+  get 'type/index'
+
+  get 'trait/index'
+
+  get 'card/index'
+
   root 'welcome#index'
 
   #Card Routes
   resources :cards
   resources :types, except: [:destroy]
+  resources :traits, except: [:destroy]
 
   get 'search_card', to: 'cards#search'
 
