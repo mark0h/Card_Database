@@ -3,6 +3,13 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  #Card Routes
+  resources :cards
+  resources :types, except: [:destroy]
+
+  get 'search_card', to: 'cards#search'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
