@@ -1,4 +1,4 @@
-class CardController < ApplicationController
+class CardsController < ApplicationController
 
   def index
   	@cards = Card.paginate(page: params[:page], per_page: 10)
@@ -31,5 +31,12 @@ class CardController < ApplicationController
 
   def destroy
   end
+
+  def card_by_type
+  end
+
+  private
+  def card_params
+    params.require(:card).permit(:name, :type_id)
 
 end

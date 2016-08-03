@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   
 
-  get 'type/index'
-
-  get 'trait/index'
-
-  get 'card/index'
+  get 'types/index'
+  get 'traits/index'
+  get 'cards/index'
 
   root 'welcome#index'
 

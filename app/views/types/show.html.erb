@@ -1,0 +1,5 @@
+<h1 align='center'><%= @type.name %> Cards</h1>
+
+<div align='center'>
+	<%= will_paginate @type_cards %>
+	<%= render 'cards/cards', card_type: @type_cards %>
