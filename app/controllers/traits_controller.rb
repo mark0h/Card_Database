@@ -9,7 +9,7 @@ class TraitsController < ApplicationController
   end
 
   def create
-  	@trait = Trait.create(trait_params)
+  	@trait = Trait.new(trait_params)
   	if @trait.save
   		redirect_to traits_path
   	else
@@ -30,4 +30,5 @@ class TraitsController < ApplicationController
   def trait_params
   	params.require(:trait).permit(:name)
   end
+  
 end

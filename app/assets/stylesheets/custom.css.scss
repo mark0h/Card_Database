@@ -6,8 +6,8 @@ $navbar-default-bg: black;
 
 #nav-logo {
 	text-transform: uppercase;
-	color: #fff;
 	text-weight: bold;
+	color: #fff;
 	float: left;
 	font-size: 1.7em;
 	letter-space: -1px;
@@ -29,4 +29,10 @@ $navbar-default-bg: black;
 	font-size: 1.2em;
 	text-transform: uppercase;
 	color: #fff;
+}
+
+.form-add-trait {
+	font-weight: bold;
+	text-align: center;
+	font-size: 1.7em;
 }
