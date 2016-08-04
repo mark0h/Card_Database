@@ -18,6 +18,7 @@ class CardsController < ApplicationController
 
   def new
   	@card = Card.new
+    @card_traits = CardTrait.new
   end
 
   def create

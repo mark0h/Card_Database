@@ -1,0 +1,3 @@
+class CardTraits < ApplicationController
+
+end

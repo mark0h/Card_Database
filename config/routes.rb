@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :cards
   resources :types, except: [:destroy]
   resources :traits, except: [:destroy]
+  resources :card_traits, except: [:show, :edit, :update]
 
   get 'search_card', to: 'cards#search'
 

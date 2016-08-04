@@ -5,6 +5,9 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'will_paginate', '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 
+#Nested fields
+gem 'nested_form_fields'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use SCSS for stylesheets
