@@ -1,23 +1,50 @@
 
-<% card_type.each do |card| %>
-  <!-- <div class="row">
-		<div class="col-xs-8 col-xs-offset-2">
-		  <div class="well well-lg">
-		  	<div class="card-title">
-		  		<%= link_to card.name, card_path(card) %>
-		  	</div>
-		  </div>
-		</div>
-	</div>
- -->
-	<div align="center">
+<div class='panel panel-card_group'>
+	<div class='panel-body'>
+		<% card_type.each_with_index do |card, index| %>
+		  <!-- <div class="row">
+				<div class="col-xs-8 col-xs-offset-2">
+				  <div class="well well-lg">
+				  	<div class="card-title">
+				  		<%= link_to card.name, card_path(card) %>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+		 -->
+		 
 
-	<div align="center" class="panel panel-info card-panel">
-	  <div class="panel-heading"><%= link_to card.name, card_path(card) %></div>
-		  <div class="panel-body">
-		    
-		  </div>
+				 <% if index%2==0 %>
+
+				 <div class='row'>
+					 <div class='col-md-6'>
+						<div class="panel panel-info panel-card">
+						  <div class="panel-heading card-name">
+						  	<%= link_to card.name, card_path(card) %>
+						  </div>
+						  <div class="panel-body">
+						    
+						  </div>
+						</div>
+					</div>
+
+				 	<% else %>
+
+					 	<div class='col-md-6'>
+							<div class="panel panel-info panel-card">
+							  <div class="panel-heading card-name">
+							  	<%= link_to card.name, card_path(card) %>
+							  </div>
+							  <div class="panel-body">					    
+							  </div>
+							</div>
+						</div>
+					</div>
+
+				 	<% end %>
+
+				 
+			
+		<% end %>
 	</div>
 </div>
-
-<% end %>
