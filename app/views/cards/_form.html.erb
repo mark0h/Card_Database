@@ -30,28 +30,38 @@
 
   <div class='form-group'>
     <div class='control-label col-sm-12'>
-      <div class='col-sm-offset-1 col-sm-10'>
+      <div class='col-sm-10'>
         <div class='row'>
           <div class='col-sm-offset-1 col-sm-8 form-nested-field'>
-            <%= f.nested_fields_for :traits do |ff| %>        
-              <%= ff.remove_nested_fields_link "remove", class: 'btn btn-danger', role: 'button' %>
-              <%= ff.label 'Trait' %>
-              <%= ff.text_field :name %>
-
-              <%= form_for(@card_traits, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-                <div class='form-group'>
-                  <div class='control-label col-sm-2'>   
-                    <%= f.label :value %>
-                  </div>
-                  <div class='col-sm-4'>
-                    <%= f.text_field :value, class: "form-control", placeholder: "Enter trait value" %>
-                  </div>
+            <%= f.nested_fields_for :traits do |ff| %>
+              <div class='col-sm-10'>
+                <div class='col-sm-offset-1 col-sm-2'>
+                  <%= ff.label 'Trait', class: 'nested-field-label' %>
                 </div>
-              <% end %>
+                <div class='col-sm-2'>
+                  <%= ff.collection_select :id, Trait.order(:name), :id, :name, include_blank: true %>
+                </div>
               
+                <%= form_for(@card_traits, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+                  <!-- <div class='form-group'> -->
+                    <div class='col-sm-1'>   
+                      <%= f.label :value %>
+                    </div>
+                    <div class='col-sm-3'>
+                      <%= f.text_field :value, class: "form-control", placeholder: "Enter trait value" %>
+                    </div>
+                  <!-- </div> -->
+                <% end %>
+
+                <div class='col-sm-3'>
+                  <%= ff.remove_nested_fields_link "remove", class: 'btn btn-danger', role: 'button' %>
+                </div>
+              </div>           
 
             <% end %>
-            <%= f.add_nested_fields_link :traits, "Add a trait", class: 'btn btn-primary', role: 'button' %>
+            <div class='col-sm-1'>
+              <%= f.add_nested_fields_link :traits, "Add a trait", class: 'btn btn-primary', role: 'button' %>
+            </div>
           </div>
         </div>
       </div>
