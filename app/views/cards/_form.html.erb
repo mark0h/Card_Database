@@ -3,7 +3,7 @@
 
   <div class='form-group'>
     <div class='control-label col-sm-2'>   
-    	<%= f.label :name %>
+      <%= f.label :name %>
     </div>
     <div class='col-sm-4'>
       <%= f.text_field :name, class: "form-control", placeholder: "Enter a Card Name", autofocus: true %>
@@ -11,12 +11,12 @@
   </div>
 
   <div class='form-group'>
-  	<div class='control-label col-sm-2'>
-  		<%= f.label 'Type' %>
-  	</div>
-  	<div class='col-sm-8'>
-  		<%= f.collection_select :type_id, Type.order(:name), :id, :name, include_blank: true %>
-  	</div>
+    <div class='control-label col-sm-2'>
+      <%= f.label 'Type' %>
+    </div>
+    <div class='col-sm-8'>
+      <%= f.collection_select :type_id, Type.order(:name), :id, :name, include_blank: true %>
+    </div>
   </div>
 
   <div class='form-group'>
@@ -41,17 +41,13 @@
                 <div class='col-sm-2'>
                   <%= ff.collection_select :id, Trait.order(:name), :id, :name, include_blank: true %>
                 </div>
-              
-                <%= form_for(@card_traits, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-                  <!-- <div class='form-group'> -->
-                    <div class='col-sm-1'>   
-                      <%= f.label :value %>
-                    </div>
-                    <div class='col-sm-3'>
-                      <%= f.text_field :value, class: "form-control", placeholder: "Enter trait value" %>
-                    </div>
-                  <!-- </div> -->
-                <% end %>
+
+                <div class='col-sm-1'>   
+                  <%= ff.label :value %>
+                </div>
+                <div class='col-sm-3'>
+                  <%= ff.text_field :value, class: "form-control", placeholder: "Enter trait value" %>
+                </div>
 
                 <div class='col-sm-3'>
                   <%= ff.remove_nested_fields_link "remove", class: 'btn btn-danger', role: 'button' %>
@@ -70,7 +66,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-    	<%= f.submit class: 'btn btn-primary btn-lg' %>
+      <%= f.submit class: 'btn btn-primary btn-lg' %>
     </div>
   </div>
 

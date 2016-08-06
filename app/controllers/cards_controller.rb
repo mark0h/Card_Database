@@ -22,19 +22,38 @@ class CardsController < ApplicationController
   end
 
   def create
-    flash[:success] = "----params: #{params}\ncard_params: #{card_params}\ncard_traits_params: #{card_traits_params}"
-    render 'index'
+    # card_name = card_params[:name]
+    # card_type = card_params[:type_id]
+    traits_to_add = ""
+    params[:card][:traits_attributes].each do |k,v|
+      traits_to_add += "ID: #{v[:id]} Value: #{v[:value]}, "
+    end
+    # flash[:success] = "#{card_name} -- Type: #{card_type} TRAITS: #{traits_to_add}"
+    # render 'index'
 
     @card = Card.new(card_params)
-    # if @card.save
-    #   flash[:success] = "#{@card.name} card successfully created"
-    #   redirect_to cards_path
-    # else
-    #   render 'new'
-    # end
+    @card_traits = []
+    if @card.save
+      params[:card][:traits_attributes].each do |k,v|
+        traits_to_add += "ID: #{v[:id]} Value: #{v[:value]}\n"
+        @card_traits << CardTrait.new(card_id: @card.id, trait_id: "#{v[:id]}", value: "#{v[:value]}")
+      end
+
+      begin
+        @card_traits.each do |x| x.save end
+      rescue
+        render 'new'
+      end      
+      
+      flash[:success] = "#{@card.name} card successfully created. TRAITS: #{traits_to_add}"
+      redirect_to cards_path
+    else
+      render 'new'
+    end
   end
 
   def show
+    @card = Card.find(params[:id])
   end
 
   def edit
@@ -51,8 +70,8 @@ class CardsController < ApplicationController
     params.require(:card).permit(:name, :type_id)
   end
 
-  def card_traits_params
-    params.require(:card_traits).permit(:trait_id, :card_id, :value)
-  end
+  # def card_traits_params
+  #   params.require(:card_traits).permit(:trait_id, :card_id, :value)
+  # end
 
 end

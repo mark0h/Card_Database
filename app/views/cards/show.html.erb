@@ -1,0 +1,19 @@
+<h1 align='center'><%= @card.name %></h1>
+<div align="center">
+	<%= link_to "Edit", edit_card_path(@card.id), class: 'btn btn-primary' %>
+</div>
+
+
+<% get_traits(@card.id) %>
+<!-- <div class='well well-sm'> -->
+	<table class='table table-striped show-card-table'>
+    <% @trait_values.each do |trait_name, trait_value| %>
+
+      <tr>
+      	<td class='trait-display-name show-card-trait'><%= trait_name %>:</td>
+      	<td class='trait-display-value'><%= trait_value %></td>
+      </tr>									      
+    
+    <% end %>	
+  </table> 
+<!-- </div>  -->

@@ -13,9 +13,10 @@
 			</div>
 		 -->
 		 
-
+         
 				 <% if index%2==0 %>
 
+				 <br>
 				 <div class='row'>
 					 <div class='col-md-6'>
 						<div class="panel panel-info panel-card">
@@ -23,7 +24,21 @@
 						  	<%= link_to card.name, card_path(card) %>
 						  </div>
 						  <div class="panel-body">
-						    
+
+							    <% get_traits(card.id) %>
+							    <div class='well well-sm'>
+							    	<table class='table table-striped'>
+									    <% @trait_values.each do |trait_name, trait_value| %>
+
+									      <tr>
+									      	<td class='trait-display-name'><%= trait_name %>:</td>
+									      	<td class='trait-display-value'><%= trait_value %></td>
+									      </tr>									      
+									    
+									    <% end %>	
+								    </table> 
+							    </div> 
+
 						  </div>
 						</div>
 					</div>
@@ -35,7 +50,23 @@
 							  <div class="panel-heading card-name">
 							  	<%= link_to card.name, card_path(card) %>
 							  </div>
-							  <div class="panel-body">					    
+							  <div class="panel-body">	
+
+
+							    <% get_traits(card.id) %>
+							    <div class='well well-sm'>
+								    <% @trait_values.each do |trait_name, trait_value| %>
+								      <div class='row'>
+								      	<div class='col-md-4 trait-display-name'>
+										     <%= trait_name %>:
+										    </div>
+										    <div class='col-md-8 trait-display-value'>
+										     <%= trait_value %>
+										    </div>
+									    </div>
+								    <% end %>	 
+							    </div> 
+
 							  </div>
 							</div>
 						</div>
