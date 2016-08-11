@@ -6,7 +6,7 @@
 
 
 
-	<div class="panel panel-info edit-card">
+	<div class="panel panel-info single-card">
 
 	  <div class="panel-heading card-name clearfix">
 	  	<%= link_to @card.name, card_path(@card) %>
@@ -21,6 +21,7 @@
 		      <tr>
 		      	<td class='trait-display-name'><%= link_to trait_name, trait_path(trait_values[1])  %>:</td>
 		      	<td class='trait-display-value'><%= f.text_field "#{trait_name}", :value => trait_values[0] %></td>
+		      	<td class='trait-display-value'><input type='checkbox' class='remove_trait_checkbox'><small>Remove</small></td>
 		      </tr>									      
 		    
 		    <% end %>	
