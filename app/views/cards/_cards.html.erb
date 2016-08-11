@@ -1,78 +1,66 @@
 
 <div class='panel panel-card_group'>
 	<div class='panel-body'>
-		<% card_type.each_with_index do |card, index| %>
-		  <!-- <div class="row">
-				<div class="col-xs-8 col-xs-offset-2">
-				  <div class="well well-lg">
-				  	<div class="card-title">
-				  		<%= link_to card.name, card_path(card) %>
-				  	</div>
-				  </div>
+		<% card_type.each_with_index do |card, index| %>		 
+	       
+		 <% if index%2==0 %>
+
+			 <br>
+			 <div class='row'>
+				 <div class='col-md-6'>
+					<div class="panel panel-info panel-card">
+					  <div class="panel-heading card-name clearfix">
+					  	<%= link_to card.name, card_path(card) %><%= link_to 'Edit', edit_card_path(card), class: 'btn btn-primary btn-sm pull-right' %>
+					  </div>
+					  <div class="panel-body">
+
+						    <% get_traits(card.id) %>
+						    <!-- <div class='well well-sm'> -->
+						    	<table class='table table-striped'>
+								    <% @trait_values.each do |trait_name, trait_values| %>
+
+								      <tr>
+								      	<td class='trait-display-name'><%= link_to trait_name, trait_path(trait_values[1])  %>:</td>
+								      	<td class='trait-display-value'><%= trait_values[0] %></td>
+								      </tr>									      
+								    
+								    <% end %>	
+							    </table> 
+						    <!-- </div>  -->
+
+						  </div>
+						</div>
+					</div>
+
+		 	<% else %>
+
+			 	<div class='col-md-6'>
+					<div class="panel panel-info panel-card">
+					  <div class="panel-heading card-name clearfix">
+					  	<%= link_to card.name, card_path(card) %><%= link_to 'Edit', edit_card_path(card), class: 'btn btn-primary btn-sm pull-right' %>
+					  </div>
+
+					  <div class="panel-body">
+					    <% get_traits(card.id) %>
+					    <!-- <div class='well well-sm'> -->
+						    <% @trait_values.each do |trait_name, trait_values| %>
+						      <div class='row'>
+						      	<div class='col-md-4 trait-display-name'>
+								     <%= trait_name %>:
+								    </div>
+								    <div class='col-md-8 trait-display-value'>
+								     <%= trait_values %>
+								    </div>
+							    </div>
+						    <% end %>	 
+					    <!-- </div>  -->
+					  </div>
+
+					</div>
 				</div>
 			</div>
-		 -->
-		 
-         
-				 <% if index%2==0 %>
 
-				 <br>
-				 <div class='row'>
-					 <div class='col-md-6'>
-						<div class="panel panel-info panel-card">
-						  <div class="panel-heading card-name">
-						  	<%= link_to card.name, card_path(card) %>
-						  </div>
-						  <div class="panel-body">
-
-							    <% get_traits(card.id) %>
-							    <div class='well well-sm'>
-							    	<table class='table table-striped'>
-									    <% @trait_values.each do |trait_name, trait_value| %>
-
-									      <tr>
-									      	<td class='trait-display-name'><%= trait_name %>:</td>
-									      	<td class='trait-display-value'><%= trait_value %></td>
-									      </tr>									      
-									    
-									    <% end %>	
-								    </table> 
-							    </div> 
-
-						  </div>
-						</div>
-					</div>
-
-				 	<% else %>
-
-					 	<div class='col-md-6'>
-							<div class="panel panel-info panel-card">
-							  <div class="panel-heading card-name">
-							  	<%= link_to card.name, card_path(card) %>
-							  </div>
-							  <div class="panel-body">	
-
-
-							    <% get_traits(card.id) %>
-							    <div class='well well-sm'>
-								    <% @trait_values.each do |trait_name, trait_value| %>
-								      <div class='row'>
-								      	<div class='col-md-4 trait-display-name'>
-										     <%= trait_name %>:
-										    </div>
-										    <div class='col-md-8 trait-display-value'>
-										     <%= trait_value %>
-										    </div>
-									    </div>
-								    <% end %>	 
-							    </div> 
-
-							  </div>
-							</div>
-						</div>
-					</div>
-
-				 	<% end %>
+		 	<% end %>
 
 				 
 			

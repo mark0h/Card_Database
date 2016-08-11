@@ -10,9 +10,11 @@ module CardHelper
 		trait_list = CardTrait.where(card_id: card_id)
 
 		trait_list.each do |trait|
-			trait_name = Trait.find(trait.trait_id).name
+			trait_info = Trait.find(trait.trait_id)
+			trait_name = trait_info.name
+			trait_id = trait_info.id
 			trait_value = trait.value
-			@trait_values[trait_name] = trait_value
+			@trait_values[trait_name] = [trait_value, trait_id]
 		end
 	end
 end

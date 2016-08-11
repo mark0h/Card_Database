@@ -57,6 +57,27 @@ class CardsController < ApplicationController
   end
 
   def edit
+    @card = Card.find(params[:id])
+  end
+
+  def update 
+    card_hash = params[:card]
+    card_id = params[:id]    
+
+    card_hash.each do |k,v|
+      trait_id = Trait.where(name: k).first.id
+      card_trait = CardTrait.where(card_id: card_id, trait_id: trait_id).first
+
+      if v != card_trait.value
+        update_test = "Updating Card id: #{card_id} with::: "
+        update_test += "#{k} value is now #{v}  it was: #{card_trait.value}; "
+        card_trait.update(value: v)        
+      end
+      
+    end
+
+    flash[:success] = "#{update_test}"
+    redirect_to card_path(card_id) 
   end
 
   def destroy

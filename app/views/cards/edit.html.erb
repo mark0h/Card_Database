@@ -1,0 +1,37 @@
+<h1 align='center'>Edit Card</h1>
+<div class='card-edit-warning'>You cannot change card type</div>
+<br>
+<br>
+<%= form_for(@card, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
+
+
+
+	<div class="panel panel-info edit-card">
+
+	  <div class="panel-heading card-name clearfix">
+	  	<%= link_to @card.name, card_path(@card) %>
+	  </div>
+	  
+	  
+	  <div class="panel-body">
+		  <% get_traits(@card.id) %>
+	  	<table class='table table-striped'>
+		    <% @trait_values.each do |trait_name, trait_values| %>
+
+		      <tr>
+		      	<td class='trait-display-name'><%= link_to trait_name, trait_path(trait_values[1])  %>:</td>
+		      	<td class='trait-display-value'><%= f.text_field "#{trait_name}", :value => trait_values[0] %></td>
+		      </tr>									      
+		    
+		    <% end %>	
+	    </table> 
+		</div>		
+
+	</div>
+
+  <div style='padding-left: 48%;'>
+  	<br>
+		<%= f.submit 'Update', class: 'btn btn-success btn-sm' %>
+	</div>
+
+<% end %>
