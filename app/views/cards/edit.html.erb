@@ -2,37 +2,59 @@
 <div class='card-edit-warning'>You cannot change card type</div>
 <br>
 <br>
-<%= form_for(@card, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
+<div class="row">
+	<!-- Just a spacer for left side -->
+	<div class="col-xs-3"></div>
+	<!-- This is The actual Card view -->
+	<div class="col-xs-6"> 
+		<%= form_for(@card, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
 
 
 
-	<div class="panel panel-info single-card">
+			<div class="panel panel-info single-card">
 
-	  <div class="panel-heading card-name clearfix">
-	  	<%= link_to @card.name, card_path(@card) %>
-	  </div>
-	  
-	  
-	  <div class="panel-body">
-		  <% get_traits(@card.id) %>
-	  	<table class='table table-striped'>
-		    <% @trait_values.each do |trait_name, trait_values| %>
+			  <div class="panel-heading card-name clearfix">
+			  	<%= link_to @card.name, card_path(@card) %>
+			  </div>
+			  
+			  
+			  <div class="panel-body">
+				  <% get_traits(@card.id) %>
+			  	<table class='table table-striped'>
+				    <% @trait_values.each do |trait_name, trait_values| %>
 
-		      <tr>
-		      	<td class='trait-display-name'><%= link_to trait_name, trait_path(trait_values[1])  %>:</td>
-		      	<td class='trait-display-value'><%= f.text_field "#{trait_name}", :value => trait_values[0] %></td>
-		      	<td class='trait-display-value'><input type='checkbox' class='remove_trait_checkbox'><small>Remove</small></td>
-		      </tr>									      
-		    
-		    <% end %>	
-	    </table> 
-		</div>		
+				      <tr>
+				      	<td class='trait-display-name'><%= link_to trait_name, trait_path(trait_values[1])  %>:</td>
+				      	<td class='trait-display-value'><%= f.text_field "#{trait_name}", :value => trait_values[0] %></td>
+				      	<td class='trait-display-value'><input type='checkbox' class='remove_trait_checkbox' id='<%= trait_name.gsub(/ /,'+') %>_checkbox'><small> Remove</small></td>
+				      </tr>									      
+				    
+				    <% end %>	
+			    </table> 
+				</div>		
 
+			</div>
+
+		  <div style='padding-left: 48%;'>
+		  	<br>
+				<%= f.submit 'Update', class: 'btn btn-success btn-sm', id: 'update_card_button' %>
+			</div>
+
+		<% end %>
 	</div>
 
-  <div style='padding-left: 48%;'>
-  	<br>
-		<%= f.submit 'Update', class: 'btn btn-success btn-sm' %>
+	<!-- This is the Removed Traits List -->
+	<div class="col-xs-3" id="traits_to_remove_panel">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				Traits to Remove
+			</div>
+			<div class="panel-body" id="traits_to_remove_body">
+			</div>
+		</div>
 	</div>
 
-<% end %>
+</div>
+
+
+<div id

@@ -71,12 +71,13 @@ class CardsController < ApplicationController
       if v != card_trait.value
         update_test = "Updating Card id: #{card_id} with::: "
         update_test += "#{k} value is now #{v}  it was: #{card_trait.value}; "
-        card_trait.update(value: v)        
+        card_trait.update(value: v)
+        flash[:success] = "#{update_test}"        
       end
       
     end
 
-    flash[:success] = "#{update_test}"
+    
     redirect_to card_path(card_id) 
   end
 

@@ -10,8 +10,9 @@
 				 <div class='col-md-6'>
 					<div class="panel panel-info panel-card">
 					  <div class="panel-heading card-name clearfix">
-					  	<%= link_to card.name, card_path(card) %><%= link_to 'Edit', edit_card_path(card), class: 'btn btn-primary btn-sm pull-right' %>
+					  	<%= link_to card.name, card_path(card) %>
 					  </div>
+					  <div class='pull-right'><small><%= link_to 'Edit', edit_card_path(card) %></small></div>
 					  <div class="panel-body">
 
 						    <% get_traits(card.id) %>
@@ -37,8 +38,9 @@
 			 	<div class='col-md-6'>
 					<div class="panel panel-info panel-card">
 					  <div class="panel-heading card-name clearfix">
-					  	<%= link_to card.name, card_path(card) %><%= link_to 'Edit', edit_card_path(card), class: 'btn btn-primary btn-sm pull-right' %>
+					  	<%= link_to card.name, card_path(card) %>
 					  </div>
+					  <div class='pull-right'><small><%= link_to 'Edit', edit_card_path(card) %></small></div>
 
 					  <div class="panel-body">
 					    <% get_traits(card.id) %>
