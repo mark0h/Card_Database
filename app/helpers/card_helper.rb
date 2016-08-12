@@ -17,4 +17,5 @@ module CardHelper
 			@trait_values[trait_name] = [trait_value, trait_id]
 		end
 	end
+
 end

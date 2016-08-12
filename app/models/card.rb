@@ -4,4 +4,8 @@ class Card < ActiveRecord::Base
 	validates :type_id, presence: true
 	has_many :card_traits
 	has_many :traits, through: :card_traits
+
+	#For adding traits in edit screen
+	has_many :temp_traits
+	accepts_nested_attributes_for :temp_traits, allow_destroy: true
 end

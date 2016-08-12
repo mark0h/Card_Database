@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  include CardUtil
 
   def index
   	@cards = Card.paginate(page: params[:page], per_page: 10)
@@ -36,7 +37,7 @@ class CardsController < ApplicationController
     if @card.save
       params[:card][:traits_attributes].each do |k,v|
         traits_to_add += "ID: #{v[:id]} Value: #{v[:value]}\n"
-        @card_traits << CardTrait.new(card_id: @card.id, trait_id: "#{v[:id]}", value: "#{v[:value]}")
+        @card_traits << CardTrait.where(card_id: @card.id, trait_id: "#{v[:id]}", value: "#{v[:value]}").first_or_create
       end
 
       begin
@@ -58,27 +59,15 @@ class CardsController < ApplicationController
 
   def edit
     @card = Card.find(params[:id])
+    @new_traits
   end
 
-  def update 
-    card_hash = params[:card]
-    card_id = params[:id]    
+  def update
 
-    card_hash.each do |k,v|
-      trait_id = Trait.where(name: k).first.id
-      card_trait = CardTrait.where(card_id: card_id, trait_id: trait_id).first
-
-      if v != card_trait.value
-        update_test = "Updating Card id: #{card_id} with::: "
-        update_test += "#{k} value is now #{v}  it was: #{card_trait.value}; "
-        card_trait.update(value: v)
-        flash[:success] = "#{update_test}"        
-      end
-      
-    end
-
-    
-    redirect_to card_path(card_id) 
+    update_results = CardUtil.remove_trait(params)
+    flash[:success] = "#{update_results}" if update_results != ""
+    # flash[:success] = "#{params}"  #For testing only, comment out above 2 lines when testing. 
+    redirect_to card_path(params[:id]) 
   end
 
   def destroy

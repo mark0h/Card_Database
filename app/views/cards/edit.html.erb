@@ -2,22 +2,50 @@
 <div class='card-edit-warning'>You cannot change card type</div>
 <br>
 <br>
-<div class="row">
-	<!-- Just a spacer for left side -->
-	<div class="col-xs-3"></div>
-	<!-- This is The actual Card view -->
-	<div class="col-xs-6"> 
-		<%= form_for(@card, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
+<div class="row">	
+	<%= form_for(@card, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
 
+	  <!-- This is the ADD TRAITS section -->
+		<div class="col-xs-4">
+			<div id="add_traits_panel">
+				  <%= f.nested_fields_for :temp_traits do |ff| %>
+				    <div class='col-sm-12'>
+				     <!--  <div class='col-sm-offset-1 col-sm-2'>
+				        <%#= ff.label 'Trait', class: 'nested-field-label' %>
+				      </div> -->
+				      <div class='col-sm-4'>
+				        <%= ff.collection_select :id, Trait.order(:name), :id, :name, include_blank: true %>
+				      </div>
 
+				      <!-- <div class='col-sm-1'>   
+				        <%#= ff.label :value %>
+				      </div> -->
+				      <div class='col-sm-7'>
+				        <%= ff.text_field :value, class: "form-control", placeholder: "Enter trait value" %>
+				      </div>
 
+				      <!-- <div class='col-sm-1'>
+				        <%= ff.remove_nested_fields_link "remove", class: 'btn btn-danger btn-sm', role: 'button' %>
+				      </div> -->
+				    </div>           
+
+				  <% end %>
+				  <div class='col-sm-1'>
+				    <%= f.add_nested_fields_link :temp_traits, "Add a trait", class: 'btn btn-primary btn-sm', role: 'button' %>
+				  </div>
+			</div>
+		</div>
+
+	  
+	  <!-- This is The actual Card view -->
+		<div class="col-xs-4"> 
 			<div class="panel panel-info single-card">
 
 			  <div class="panel-heading card-name clearfix">
 			  	<%= link_to @card.name, card_path(@card) %>
 			  </div>
 			  
-			  
+		  
 			  <div class="panel-body">
 				  <% get_traits(@card.id) %>
 			  	<table class='table table-striped'>
@@ -26,25 +54,39 @@
 				      <tr>
 				      	<td class='trait-display-name'><%= link_to trait_name, trait_path(trait_values[1])  %>:</td>
 				      	<td class='trait-display-value'><%= f.text_field "#{trait_name}", :value => trait_values[0] %></td>
-				      	<td class='trait-display-value'><input type='checkbox' class='remove_trait_checkbox' id='<%= trait_name.gsub(/ /,'+') %>_checkbox'><small> Remove</small></td>
+				      	<!-- <td class='trait-display-value'>
+				      		<%#= f.check_box "#{trait_name}_Checkbox", {class: 'remove_trait_checkbox', id: "#{trait_name.gsub(/ /,'+')}_checkbox"}, "yes", "no" %><small> Remove</small>
+				      	</td> -->
+				      	<!-- <td class='trait-display-value'><input type='checkbox' class='remove_trait_checkbox' id='<%= trait_name.gsub(/ /,'+') %>_checkbox'><small> Remove</small></td> -->
+				      	<td class='trait-display-value'>
+				      		<%= check_box_tag "traits_removed[trait_name][]", trait_name, checked = false, {class: 'remove_trait_checkbox', :id => "#{trait_name}_checkbox" } %><small> Remove</small>
+				      	</td>
 				      </tr>									      
 				    
 				    <% end %>	
 			    </table> 
-				</div>		
-
+				</div>	
 			</div>
 
-		  <div style='padding-left: 48%;'>
-		  	<br>
-				<%= f.submit 'Update', class: 'btn btn-success btn-sm', id: 'update_card_button' %>
+			<br>
+		  <div class='row'>
+		  	<div class='col-xs-2'></div>
+				<div class='col-xs-1'>
+					<button type="button" class='btn btn-info btn-sm', id='add_trait_card_button' >Add Trait</button>
+				</div>
+				<div class='col-xs-5'></div>
+		  	<div class='col-xs-1'>
+					<%= f.submit 'Update', class: 'btn btn-success btn-sm', id: 'update_card_button' %>
+				</div>
 			</div>
 
-		<% end %>
-	</div>
+		</div>		
+			
+
+	<% end %>
 
 	<!-- This is the Removed Traits List -->
-	<div class="col-xs-3" id="traits_to_remove_panel">
+	<div class="col-xs-4" id="traits_to_remove_panel">
 		<div class="panel panel-danger">
 			<div class="panel-heading">
 				Traits to Remove
@@ -56,5 +98,5 @@
 
 </div>
 
+	
 
-<div id

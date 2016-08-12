@@ -4,12 +4,24 @@ var edit_remove_checkboxes;  //Keeps track of which Traits were checked to remov
 $(document).ready(function() {
 	// alert("document ready!");
 	$("#traits_to_remove_panel").hide(); //Only show this if a trait is selected for removal
+	$('#add_traits_panel').hide();
 	$('.remove_trait_checkbox').prop('checked', false); //Uncheck all remove trait boxes when page is ready
 });
 
 //When the UPDATE button is clicked in the Card Edit UI
+$(document).on('click', "#add_trait_card_button", function(e) {
+	e.stopPropagation();
+	if($('#add_traits_panel').is(":visible")) {
+		$('#add_traits_panel').hide();
+	} else {
+		$('#add_traits_panel').show();
+	}
+	
+});
+
+//When the Add Trait button is clicked in the Card Edit UI
 $(document).on('click', "#update_card_button", function(e) {
-	alert(edit_remove_checkboxes);
+	e.stopPropagation();	
 });
 
 //When a "remove" checkbox is selected in the Card Edit UI
