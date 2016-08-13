@@ -6,6 +6,17 @@ $(document).ready(function() {
 	$("#traits_to_remove_panel").hide(); //Only show this if a trait is selected for removal
 	$('#add_traits_panel').hide();
 	$('.remove_trait_checkbox').prop('checked', false); //Uncheck all remove trait boxes when page is ready
+
+	//Hidden fields
+	$('.card_type_selector').change(function() {
+		alert($('.card_type_selector').val());
+		if($('.card_type_selector').val() == 1) {
+			alert("selected Class!");
+			$('.hidden_option').show();
+		} else {
+			$('.hidden_option').hide();
+		}
+	});
 });
 
 //When the UPDATE button is clicked in the Card Edit UI
@@ -37,6 +48,8 @@ $(document).on('click', ".remove_trait_checkbox", function(e) {
 
 });
 
+
+//Function on what to do when a checkbox is clicked. It builds a unsorted list in html of items selected, and adds them to the panel
 function handle_trait_remove_checkbox_click() {
   
   var traits_to_remove_html = "<ul id='removed_traits_ul'>"
@@ -58,3 +71,5 @@ function handle_trait_remove_checkbox_click() {
   traits_to_remove_html += "</ul>"
   $('#traits_to_remove_body').html(traits_to_remove_html); //Add final list results to the panel body of traits remove list
 }
+
+

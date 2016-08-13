@@ -43,20 +43,22 @@
 					  <div class='pull-right'><small><%= link_to 'Edit', edit_card_path(card) %></small></div>
 
 					  <div class="panel-body">
-					    <% get_traits(card.id) %>
-					    <!-- <div class='well well-sm'> -->
-						    <% @trait_values.each do |trait_name, trait_values| %>
-						      <div class='row'>
-						      	<div class='col-md-4 trait-display-name'>
-								     <%= trait_name %>:
-								    </div>
-								    <div class='col-md-8 trait-display-value'>
-								     <%= trait_values %>
-								    </div>
-							    </div>
-						    <% end %>	 
-					    <!-- </div>  -->
-					  </div>
+
+						    <% get_traits(card.id) %>
+						    <!-- <div class='well well-sm'> -->
+						    	<table class='table table-striped'>
+								    <% @trait_values.each do |trait_name, trait_values| %>
+
+								      <tr>
+								      	<td class='trait-display-name'><%= link_to trait_name, trait_path(trait_values[1])  %>:</td>
+								      	<td class='trait-display-value'><%= trait_values[0] %></td>
+								      </tr>									      
+								    
+								    <% end %>	
+							    </table> 
+						    <!-- </div>  -->
+
+						  </div>
 
 					</div>
 				</div>
