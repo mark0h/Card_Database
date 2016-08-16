@@ -66,4 +66,11 @@ module CardUtil
 		# removed_trait.destroy
 	end
 
+  def self.find_card(name)
+    debug_testing_log ||= Logger.new("#{Rails.root}/log/debug_testing_log.log")
+    debug_testing_log.info "Search card: #{name}"
+    card = Card.where(name: name).first
+    return card
+  end
+
 end

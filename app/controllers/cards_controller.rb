@@ -6,14 +6,19 @@ class CardsController < ApplicationController
   end
 
   def search
-  	if params[:name]
-  		@card = Card.find_by_name(params[:name])
-  		if @card
-  			redirect_to card_path(@card)
-  		else
-  			flash[:danger] = "Card does not exist, but you can create it"
-  			redirect_to new_card_path, name: params[:name]
-  		end
+    debug_testing_log ||= Logger.new("#{Rails.root}/log/debug_testing_log.log")
+  	if params[:search_text]
+  		@card = Card.where(name: name).first
+
+      if @card
+        debug_testing_log.info "Search card.id: #{@card.id} "
+        # redirect_to card_path(@card.id)
+        redirect_to "/cards/#{@card.id}"
+      else
+        flash[:danger] = "Card does not exist, but you can create it"
+        redirect_to new_card_path, name: params[:search_text]
+      end
+
   	end
   end
 
