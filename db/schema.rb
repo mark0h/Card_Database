@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811225314) do
+ActiveRecord::Schema.define(version: 20160817233434) do
 
   create_table "card_traits", force: :cascade do |t|
     t.integer  "card_id"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20160811225314) do
   create_table "cards", force: :cascade do |t|
     t.string   "name"
     t.integer  "type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "class_cards", force: :cascade do |t|
+    t.integer  "card_id"
+    t.integer  "class_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,6 +48,7 @@ ActiveRecord::Schema.define(version: 20160811225314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "value"
+    t.integer  "type_id"
   end
 
   create_table "types", force: :cascade do |t|

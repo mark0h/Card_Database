@@ -9,9 +9,7 @@ $(document).ready(function() {
 
 	//Hidden fields
 	$('.card_type_selector').change(function() {
-		alert($('.card_type_selector').val());
-		if($('.card_type_selector').val() == 1) {
-			alert("selected Class!");
+		if($('.card_type_selector').val() == 2) {
 			$('.hidden_option').show();
 		} else {
 			$('.hidden_option').hide();

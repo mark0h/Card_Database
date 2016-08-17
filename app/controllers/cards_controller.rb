@@ -50,6 +50,10 @@ class CardsController < ApplicationController
       rescue
         render 'new'
       end      
+
+      if params[:card_id]
+        @card_class = ClassCard.where(card_id: @card.id, class_id: params[:card_id]).first_or_create
+      end
       
       flash[:success] = "#{@card.name} card successfully created. TRAITS: #{traits_to_add}"
       redirect_to cards_path
