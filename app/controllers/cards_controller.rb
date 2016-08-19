@@ -8,13 +8,17 @@ class CardsController < ApplicationController
   def search
     debug_testing_log ||= Logger.new("#{Rails.root}/log/debug_testing_log.log")
   	if params[:search_text]
-  		@card = Card.where(name: name).first
+  		@card = Card.where(name: params[:search_text]).first
+      debug_testing_log.info "@card: #{@card.inspect}"
 
       if @card
         debug_testing_log.info "Search card.id: #{@card.id} "
         # redirect_to card_path(@card.id)
-        redirect_to "/cards/#{@card.id}"
+        debug_testing_log.info "/cards/#{@card.id}"
+        redirect_to :controller => 'cards', :action => 'show', id: @card.id
+        return
       else
+        debug_testing_log.info "Card does not exist!"
         flash[:danger] = "Card does not exist, but you can create it"
         redirect_to new_card_path, name: params[:search_text]
       end
