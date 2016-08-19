@@ -18,6 +18,12 @@ class TraitsController < ApplicationController
   end
 
   def show
+    @trait = Trait.find(params[:id])
+    card_ids = CardTrait.where(trait_id: params[:id])
+    @card_list = []
+    card_ids.each do |card_trait|
+      @card_list << Card.find(card_trait.card_id)
+    end
   end
 
   def edit
