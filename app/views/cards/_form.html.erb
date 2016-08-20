@@ -48,7 +48,7 @@
                   <%= ff.label 'Trait', class: 'nested-field-label' %>
                 </div>
                 <div class='col-sm-2'>
-                  <%= ff.collection_select :id, Trait.order(:name), :id, :name, include_blank: true %>
+                  <%= ff.collection_select :id, Trait.where(type_id: @type_id).order(:name), :id, :name, {include_blank: true}, {class: 'trait_selector'} %>
                 </div>
 
                 <div class='col-sm-1'>   
