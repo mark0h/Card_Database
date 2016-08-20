@@ -10,10 +10,18 @@ $(document).ready(function() {
 	//Hidden fields
 	$('.card_type_selector').change(function() {
 		if($('.card_type_selector').val() == 2) {
+			alert("type changed!");
 			$('.hidden_option').show();
 		} else {
 			$('.hidden_option').hide();
 		}
+
+    $.ajax({
+			url: "/filter_traits_by_type",
+			type: "GET",
+			data: {selected_type: $(".card_type_selector").val() }
+		});
+
 	});
 });
 
@@ -71,3 +79,13 @@ function handle_trait_remove_checkbox_click() {
 }
 
 
+//Function for filtering TRIATS based on TYPE selection
+// $(function() {
+// 	$("select#card_type_id").on("change", function() {
+// 		$.ajax({
+// 			url: "/filter_traits_by_type",
+// 			type: "GET",
+// 			data: {selected_type: $("select#card_type_id").val() }
+// 		});
+// 	});
+// });

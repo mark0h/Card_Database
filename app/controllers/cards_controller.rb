@@ -26,6 +26,14 @@ class CardsController < ApplicationController
   	end
   end
 
+  def filter_traits_by_type
+    @filtered_traits = Trait.where(type_id: params[:selected_type])
+    debug_testing_log ||= Logger.new("#{Rails.root}/log/debug_testing_log.log")
+    debug_testing_log.info "@filtered_traits: #{@filtered_traits.inspect}"
+    debug_testing_log.info "params[:selected_type]: #{params[:selected_type]}"
+
+  end
+
   def new
   	@card = Card.new
     @card_traits = CardTrait.new

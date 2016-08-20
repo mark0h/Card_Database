@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get 'search_card', to: 'cards#search'
 
 
+  #For the card creation to only show traits belonging to that card type
+  get 'filter_traits_by_type' => 'cards#filter_traits_by_type'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
